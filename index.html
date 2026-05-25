@@ -4,114 +4,153 @@
   <meta charset="UTF-8">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#111">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Reloj</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; width: 100%; overflow: hidden; }
 
-    #app {
-      width: 100%; height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 1.5rem 1rem; font-family: 'Outfit', sans-serif;
-      background: #fff; color: #111;
-      transition: background 0.4s, color 0.4s;
+    html, body {
+      width: 100%; min-height: 100vh;
+      overflow-y: auto;
+      font-family: 'Rajdhani', sans-serif;
+      background: #111;
+      color: #fff;
+      user-select: none;
     }
-    #app.dark { background: #0d0f14; color: #e8ead0; }
 
-    /* --- Botón modo noche --- */
-    #toggle {
-      position: absolute;
-      top: 1.2rem; right: 1.4rem;
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      border: 2px solid #eee;
-      background: transparent;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.3s, background 0.3s;
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      min-height: 100vh;
+      padding: 16px 12px 24px;
+      gap: 16px;
     }
-    #app.dark #toggle { border-color: #2a2d35; }
-    #toggle svg { width: 24px; height: 24px; transition: opacity 0.3s; }
-    .icon-moon { display: block; }
-    .icon-sun  { display: none;  }
-    #app.dark .icon-moon { display: none;  }
-    #app.dark .icon-sun  { display: block; }
 
     /* --- Días --- */
-    .days-row { display: flex; gap: 10px; margin-bottom: 1.8rem; flex-wrap: wrap; justify-content: center; }
-    .day-pill {
-      font-size: 15px; font-weight: 400; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #ccc; padding: 6px 16px;
-      border-radius: 30px; border: 1.5px solid #eee;
-      transition: color 0.3s, border-color 0.3s, background 0.3s;
+    .days {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 12px;
+      font-size: 36px;
+      width: 100%;
     }
-    #app.dark .day-pill { color: #333; border-color: #1e2028; }
-    .day-pill.today { color: #cc0000; border-color: #cc0000; background: rgba(204,0,0,0.08); font-weight: 600; }
-    #app.dark .day-pill.today { color: #cc0000; border-color: #cc0000; background: rgba(204,0,0,0.12); }
 
-    /* --- Hora --- */
-    .time-display {
-      font-family: 'Bebas Neue', sans-serif; font-size: 260px;
-      color: #cc0000; letter-spacing: 0.02em; line-height: 0.88;
-      margin-bottom: 0.2rem;
+    .days span {
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+      border-radius: 8px;
+      color: #555;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .days .active {
+      background: #ff3c3c;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* --- Reloj --- */
+    .clock {
+      width: 100%;
+      text-align: center;
+      font-size: clamp(150px, 35vw, 55vh);
+      font-weight: 700;
+      line-height: 1;
+      color: #ff3c3c;
+      text-shadow: 0 0 20px rgba(255,60,60,0.4);
+      white-space: nowrap;
+      overflow: hidden;
+      letter-spacing: 0.02em;
     }
 
     /* --- Fecha --- */
-    .date-display {
-      font-size: 17px; color: #bbb; letter-spacing: 0.18em;
-      text-transform: uppercase; margin-bottom: 2.2rem; font-weight: 300;
-      transition: color 0.3s;
+    .fecha {
+      font-size: clamp(18px, 2.5vw, 28px);
+      color: #555;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
     }
-    #app.dark .date-display { color: #444; }
-
-    /* --- Divider --- */
-    .divider { width: 60px; height: 2px; background: #cc0000; opacity: 0.2; margin: 0 0 2.2rem; }
 
     /* --- Clima --- */
-    .weather-row { display: flex; align-items: center; gap: 2.5rem; }
-    .temp-main {
-      font-family: 'Bebas Neue', sans-serif; font-size: 110px;
-      color: #cc0000; line-height: 1; text-align: center;
+    .weather-block {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .temp-range { font-size: 15px; color: #ccc; margin-top: 6px; letter-spacing: 0.08em; text-align: center; transition: color 0.3s; }
-    #app.dark .temp-range { color: #333; }
-    .weather-info { border-left: 1.5px solid #eee; padding-left: 2.5rem; transition: border-color 0.3s; }
-    #app.dark .weather-info { border-color: #1e2028; }
-    .weather-desc { font-size: 22px; color: #555; font-weight: 300; margin-bottom: 8px; transition: color 0.3s; }
-    #app.dark .weather-desc { color: #888; }
-    .weather-detail { font-size: 14px; color: #ccc; line-height: 2; transition: color 0.3s; }
-    #app.dark .weather-detail { color: #2a2d35; }
-    .weather-detail span { color: #aaa; }
-    #app.dark .weather-detail span { color: #555; }
 
-    /* --- Footer --- */
-    .footer { margin-top: 2.2rem; font-size: 11px; color: #ddd; letter-spacing: 0.08em; display: flex; align-items: center; gap: 5px; transition: color 0.3s; }
-    #app.dark .footer { color: #1e2028; }
-    .dot { width: 5px; height: 5px; border-radius: 50%; background: #cc0000; opacity: 0.4; animation: blink 2s ease-in-out infinite; }
-    @keyframes blink { 0%,100%{opacity:0.4;} 50%{opacity:0.1;} }
-    .msg { font-size: 16px; color: #bbb; }
+    .weather-temp {
+      display: flex;
+      flex-direction: column;
+      font-size: clamp(28px, 5vw, 50px);
+      font-weight: 600;
+      gap: 6px;
+      text-align: center;
+      color: #ff3c3c;
+    }
 
-    /* Responsive */
-    @media (max-width: 800px) { .time-display{font-size:180px;} .temp-main{font-size:86px;} }
-    @media (max-width: 600px) { .time-display{font-size:130px;} .temp-main{font-size:68px;} }
-    @media (max-width: 420px) { .time-display{font-size:96px;} .temp-main{font-size:52px;} .day-pill{font-size:12px;padding:5px 11px;} }
+    .weather-desc {
+      font-size: clamp(18px, 2.5vw, 28px);
+      color: #777;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .weather-detail {
+      font-size: clamp(14px, 1.8vw, 22px);
+      color: #444;
+      text-align: center;
+    }
+
+    .weather-detail span { color: #666; }
+
+    /* --- Botón modo noche/día --- */
+    #toggle {
+      position: fixed;
+      top: 1rem; right: 1.2rem;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid #222;
+      background: transparent;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #toggle svg { width: 22px; height: 22px; }
+    .icon-sun { display: none; }
+    body.day .icon-sun  { display: block; }
+    body.day .icon-moon { display: none; }
+
+    /* --- Modo día --- */
+    body.day { background: #fff; color: #111; }
+    body.day .days span { color: #ccc; }
+    body.day .days .active { background: #cc0000; color: #fff; }
+    body.day .clock { color: #cc0000; text-shadow: none; }
+    body.day .fecha { color: #bbb; }
+    body.day .weather-temp { color: #cc0000; }
+    body.day .weather-desc { color: #888; }
+    body.day .weather-detail { color: #ccc; }
+    body.day .weather-detail span { color: #aaa; }
+    body.day #toggle { border-color: #eee; }
+
+    .msg { color: #444; font-size: 20px; }
   </style>
 </head>
 <body>
-<div id="app">
 
-  <!-- Botón modo noche -->
-  <button id="toggle" onclick="toggleDark()" title="Modo noche">
-    <!-- Luna (modo día) -->
-    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <button id="toggle" onclick="toggleMode()" title="Modo día/noche">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
     </svg>
-    <!-- Sol (modo noche) -->
-    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="5"/>
       <line x1="12" y1="1"  x2="12" y2="3"/>
       <line x1="12" y1="21" x2="12" y2="23"/>
@@ -124,13 +163,14 @@
     </svg>
   </button>
 
-  <div class="days-row" id="days-row"></div>
-  <div class="time-display" id="time">--:--</div>
-  <div class="date-display" id="date">cargando...</div>
-  <div class="divider"></div>
-  <div class="weather-row" id="weather-row"><div class="msg">obteniendo clima...</div></div>
-  <div class="footer"><span class="dot"></span>Villa Ballester · GitHub Actions</div>
-</div>
+  <div class="layout">
+    <div class="days" id="days-row"></div>
+    <div class="clock" id="time">--:--</div>
+    <div class="fecha" id="fecha">cargando...</div>
+    <div class="weather-block" id="weather-block">
+      <div class="msg">obteniendo clima...</div>
+    </div>
+  </div>
 
 <script>
 var DAYS   = ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
@@ -138,33 +178,25 @@ var MONTHS = ['enero','febrero','marzo','abril','mayo','junio',
               'julio','agosto','septiembre','octubre','noviembre','diciembre'];
 var DESC = {
   'Sunny':'Soleado','Clear':'Despejado','Clear ':'Despejado',
-  'Partly cloudy':'Parcialmente nublado','Partly Cloudy':'Parcialmente nublado','Partly Cloudy ':'Parcialmente nublado',
+  'Partly cloudy':'Parc. nublado','Partly Cloudy':'Parc. nublado','Partly Cloudy ':'Parc. nublado',
   'Cloudy':'Nublado','Cloudy ':'Nublado','Overcast':'Cubierto',
   'Mist':'Neblina','Fog':'Niebla',
   'Light rain':'Lluvia leve','Moderate rain':'Lluvia moderada','Heavy rain':'Lluvia intensa',
   'Light drizzle':'Llovizna leve','Drizzle':'Llovizna',
   'Light snow':'Nieve leve','Moderate snow':'Nieve moderada','Heavy snow':'Nieve intensa',
   'Thundery outbreaks possible':'Tormenta posible','Patchy rain nearby':'Lluvia cercana',
-  'Blowing snow':'Nieve con viento','Blizzard':'Ventisca',
-  'Light sleet':'Aguanieve leve','Moderate or heavy sleet':'Aguanieve',
-  'Ice pellets':'Granizo','Light rain shower':'Chubascos leves',
-  'Moderate or heavy rain shower':'Chubascos moderados','Torrential rain shower':'Lluvia torrencial',
-  'Light snow showers':'Nieve leve','Moderate or heavy snow showers':'Nieve moderada',
-  'Thunder':'Tormenta','Patchy light rain':'Lluvia leve'
+  'Light rain shower':'Chubascos leves','Moderate or heavy rain shower':'Chubascos',
+  'Torrential rain shower':'Lluvia torrencial','Thunder':'Tormenta',
+  'Patchy light rain':'Lluvia leve','Blowing snow':'Nieve con viento','Blizzard':'Ventisca'
 };
-
 function tr(s){ return DESC[s] || (s ? s.trim() : 'Variable'); }
 function pad(n){ return n < 10 ? '0'+n : ''+n; }
 
-/* --- Modo noche --- */
-var app = document.getElementById('app');
-try {
-  if(localStorage.getItem('dark') === '1') app.classList.add('dark');
-} catch(e){}
-
-function toggleDark(){
-  app.classList.toggle('dark');
-  try { localStorage.setItem('dark', app.classList.contains('dark') ? '1' : '0'); } catch(e){}
+/* --- Modo día/noche --- */
+try { if(localStorage.getItem('mode') === 'day') document.body.classList.add('day'); } catch(e){}
+function toggleMode(){
+  document.body.classList.toggle('day');
+  try { localStorage.setItem('mode', document.body.classList.contains('day') ? 'day' : 'night'); } catch(e){}
 }
 
 /* --- Días --- */
@@ -173,10 +205,10 @@ function renderDays(){
   var row = document.getElementById('days-row');
   row.innerHTML = '';
   for(var i = 0; i < 7; i++){
-    var p = document.createElement('div');
-    p.className = 'day-pill' + (i === today ? ' today' : '');
-    p.textContent = DAYS[i];
-    row.appendChild(p);
+    var s = document.createElement('span');
+    if(i === today) s.className = 'active';
+    s.textContent = DAYS[i];
+    row.appendChild(s);
   }
 }
 
@@ -184,27 +216,11 @@ function renderDays(){
 function updateClock(){
   var n = new Date();
   document.getElementById('time').textContent = pad(n.getHours()) + ':' + pad(n.getMinutes());
-  document.getElementById('date').textContent =
+  document.getElementById('fecha').textContent =
     DAYS[n.getDay()] + ', ' + n.getDate() + ' de ' + MONTHS[n.getMonth()] + ' ' + n.getFullYear();
 }
 
 /* --- Clima --- */
-function showWeather(temp, tmax, tmin, desc, wind){
-  document.getElementById('weather-row').innerHTML =
-    '<div style="text-align:center">' +
-      '<div class="temp-main">' + temp + '&#176;C</div>' +
-      '<div class="temp-range">&#8593;' + tmax + '&#176;&nbsp; &#8595;' + tmin + '&#176;</div>' +
-    '</div>' +
-    '<div class="weather-info">' +
-      '<div class="weather-desc">' + desc + '</div>' +
-      '<div class="weather-detail">Viento <span>' + wind + ' km/h</span></div>' +
-    '</div>';
-}
-
-function showError(m){
-  document.getElementById('weather-row').innerHTML = '<div class="msg">' + m + '</div>';
-}
-
 function getWeather(){
   var x = new XMLHttpRequest();
   x.open('GET', 'clima.json?t=' + new Date().getTime(), true);
@@ -216,21 +232,30 @@ function getWeather(){
         var d  = JSON.parse(x.responseText);
         var cc = d.current_condition[0];
         var wd = d.weather[0];
-        showWeather(
-          Math.round(cc.temp_C),
-          Math.round(wd.maxtempC),
-          Math.round(wd.mintempC),
-          tr(cc.weatherDesc[0].value),
-          Math.round(cc.windspeedKmph)
-        );
-      } catch(e){ showError('error al leer clima'); }
+        var temp = Math.round(cc.temp_C);
+        var tmax = Math.round(wd.maxtempC);
+        var tmin = Math.round(wd.mintempC);
+        var desc = tr(cc.weatherDesc[0].value);
+        var wind = Math.round(cc.windspeedKmph);
+        document.getElementById('weather-block').innerHTML =
+          '<div class="weather-temp">' +
+            '<span>' + temp + '°C</span>' +
+            '<span style="font-size:0.5em;color:#555">&#8593;' + tmax + '° &nbsp; &#8595;' + tmin + '°</span>' +
+          '</div>' +
+          '<div>' +
+            '<div class="weather-desc">' + desc + '</div>' +
+            '<div class="weather-detail">Viento <span>' + wind + ' km/h</span></div>' +
+          '</div>';
+      } catch(e){
+        document.getElementById('weather-block').innerHTML = '<div class="msg">error al leer clima</div>';
+      }
     } else {
-      showError('clima.json no encontrado');
+      document.getElementById('weather-block').innerHTML = '<div class="msg">sin clima</div>';
     }
   };
-  x.ontimeout = function(){ showError('timeout'); };
-  x.onerror   = function(){ showError('sin conexion'); };
-  try{ x.send(); } catch(e){ showError('error: ' + e.message); }
+  x.ontimeout = function(){ document.getElementById('weather-block').innerHTML = '<div class="msg">timeout</div>'; };
+  x.onerror   = function(){ document.getElementById('weather-block').innerHTML = '<div class="msg">sin conexion</div>'; };
+  try{ x.send(); } catch(e){}
 }
 
 renderDays();
