@@ -5,15 +5,17 @@ on:
     - cron: '*/10 * * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Obtener clima
-        run: |
-          curl -s "https://clima.kevin-diaz98.workers.dev/" > clima.json
+        run: curl -s "https://clima.kevin-diaz98.workers.dev/" > clima.json
 
       - name: Commit y push
         run: |
