@@ -17,19 +17,13 @@
       align-items: center; justify-content: center;
       padding: 1.5rem 1rem; font-family: 'Outfit', sans-serif;
     }
-    .days-row {
-      display: flex; gap: 8px; margin-bottom: 1.5rem;
-      flex-wrap: wrap; justify-content: center;
-    }
+    .days-row { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
     .day-pill {
       font-size: 13px; font-weight: 400; letter-spacing: 0.1em;
       text-transform: uppercase; color: #ccc; padding: 5px 13px;
       border-radius: 30px; border: 1.5px solid #eee;
     }
-    .day-pill.today {
-      color: #cc0000; border-color: #cc0000;
-      background: rgba(204,0,0,0.06); font-weight: 600;
-    }
+    .day-pill.today { color: #cc0000; border-color: #cc0000; background: rgba(204,0,0,0.06); font-weight: 600; }
     .time-display {
       font-family: 'Bebas Neue', sans-serif; font-size: 200px;
       color: #cc0000; letter-spacing: 0.02em; line-height: 0.9; margin-bottom: 0.1rem;
@@ -40,31 +34,18 @@
     }
     .divider { width: 60px; height: 2px; background: #cc0000; opacity: 0.2; margin: 0 0 2rem; }
     .weather-row { display: flex; align-items: center; gap: 2rem; }
-    .temp-main {
-      font-family: 'Bebas Neue', sans-serif; font-size: 72px;
-      color: #cc0000; line-height: 1; text-align: center;
-    }
+    .temp-main { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #cc0000; line-height: 1; text-align: center; }
     .temp-range { font-size: 12px; color: #ccc; margin-top: 4px; letter-spacing: 0.08em; text-align: center; }
     .weather-info { border-left: 1.5px solid #eee; padding-left: 2rem; }
     .weather-desc { font-size: 18px; color: #555; font-weight: 300; margin-bottom: 6px; }
-    .weather-detail { font-size: 12px; color: #ccc; line-height: 2; letter-spacing: 0.05em; }
+    .weather-detail { font-size: 12px; color: #ccc; line-height: 2; }
     .weather-detail span { color: #aaa; }
-    .footer {
-      margin-top: 2rem; font-size: 10px; color: #ddd;
-      letter-spacing: 0.08em; display: flex; align-items: center; gap: 5px;
-    }
-    .dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: #cc0000; opacity: 0.4;
-      animation: blink 2s ease-in-out infinite;
-    }
+    .footer { margin-top: 2rem; font-size: 10px; color: #ddd; letter-spacing: 0.08em; display: flex; align-items: center; gap: 5px; }
+    .dot { width: 5px; height: 5px; border-radius: 50%; background: #cc0000; opacity: 0.4; animation: blink 2s ease-in-out infinite; }
     @keyframes blink { 0%,100%{opacity:0.4;} 50%{opacity:0.1;} }
     .msg { color: #bbb; font-size: 14px; }
     @media (max-width: 700px) { .time-display{font-size:130px;} .temp-main{font-size:56px;} }
-    @media (max-width: 480px) {
-      .time-display{font-size:96px;} .temp-main{font-size:48px;}
-      .weather-row{gap:1.2rem;} .weather-info{padding-left:1.2rem;}
-    }
+    @media (max-width: 480px) { .time-display{font-size:96px;} .temp-main{font-size:48px;} .weather-row{gap:1.2rem;} .weather-info{padding-left:1.2rem;} }
     @media (max-width: 360px) { .time-display{font-size:78px;} .day-pill{font-size:11px;padding:4px 9px;} }
   </style>
 </head>
@@ -75,7 +56,7 @@
   <div class="date-display" id="date">cargando...</div>
   <div class="divider"></div>
   <div class="weather-row" id="weather-row"><div class="msg">obteniendo clima...</div></div>
-  <div class="footer"><span class="dot"></span>Villa Ballester</div>
+  <div class="footer"><span class="dot"></span>Villa Ballester · actualizado por GitHub Actions</div>
 </div>
 
 <script>
@@ -87,9 +68,9 @@ var DESC = {
   'Sunny':'Soleado','Clear':'Despejado','Clear ':'Despejado',
   'Partly cloudy':'Parcialmente nublado','Partly Cloudy':'Parcialmente nublado','Partly Cloudy ':'Parcialmente nublado',
   'Cloudy':'Nublado','Cloudy ':'Nublado','Overcast':'Cubierto',
-  'Mist':'Neblina','Fog':'Niebla','Freezing fog':'Niebla helada',
+  'Mist':'Neblina','Fog':'Niebla',
   'Light rain':'Lluvia leve','Moderate rain':'Lluvia moderada','Heavy rain':'Lluvia intensa',
-  'Light drizzle':'Llovizna leve','Drizzle':'Llovizna','Freezing drizzle':'Llovizna helada',
+  'Light drizzle':'Llovizna leve','Drizzle':'Llovizna',
   'Light snow':'Nieve leve','Moderate snow':'Nieve moderada','Heavy snow':'Nieve intensa',
   'Thundery outbreaks possible':'Tormenta posible','Patchy rain nearby':'Lluvia cercana',
   'Blowing snow':'Nieve con viento','Blizzard':'Ventisca',
@@ -97,7 +78,7 @@ var DESC = {
   'Ice pellets':'Granizo','Light rain shower':'Chubascos leves',
   'Moderate or heavy rain shower':'Chubascos moderados','Torrential rain shower':'Lluvia torrencial',
   'Light snow showers':'Nieve leve','Moderate or heavy snow showers':'Nieve moderada',
-  'Thunder':'Tormenta','Heavy thunder':'Tormenta fuerte'
+  'Thunder':'Tormenta','Patchy light rain':'Lluvia leve'
 };
 
 function tr(s){ return DESC[s] || (s ? s.trim() : 'Variable'); }
@@ -139,8 +120,11 @@ function showError(m){
 }
 
 function getWeather(){
+  /* Lee clima.json desde el mismo dominio github.io — sin certificado externo */
   var x = new XMLHttpRequest();
-  x.open('GET', 'https://clima.kevin-diaz98.workers.dev/', true);
+  /* Cache-busting para que KitKat no sirva el archivo viejo */
+  var url = 'clima.json?t=' + new Date().getTime();
+  x.open('GET', url, true);
   x.timeout = 10000;
 
   x.onreadystatechange = function(){
@@ -161,17 +145,15 @@ function getWeather(){
         showError('error al leer clima');
       }
     } else {
-      showError('sin clima (' + x.status + ')');
+      showError('clima.json no encontrado (' + x.status + ')');
     }
   };
 
   x.ontimeout = function(){ showError('timeout'); };
   x.onerror   = function(){ showError('sin conexion'); };
-
   try{ x.send(); } catch(e){ showError('error: ' + e.message); }
 }
 
-/* arranque */
 renderDays();
 updateClock();
 getWeather();
