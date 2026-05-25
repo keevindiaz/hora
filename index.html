@@ -10,60 +10,132 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; width: 100%; background: #fff; overflow: hidden; }
+    html, body { height: 100%; width: 100%; overflow: hidden; }
+
     #app {
       width: 100%; height: 100vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       padding: 1.5rem 1rem; font-family: 'Outfit', sans-serif;
+      background: #fff; color: #111;
+      transition: background 0.4s, color 0.4s;
     }
-    .days-row { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    #app.dark { background: #0d0f14; color: #e8ead0; }
+
+    /* --- Botón modo noche --- */
+    #toggle {
+      position: absolute;
+      top: 1.2rem; right: 1.4rem;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 2px solid #eee;
+      background: transparent;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #app.dark #toggle { border-color: #2a2d35; }
+    #toggle svg { width: 24px; height: 24px; transition: opacity 0.3s; }
+    .icon-moon { display: block; }
+    .icon-sun  { display: none;  }
+    #app.dark .icon-moon { display: none;  }
+    #app.dark .icon-sun  { display: block; }
+
+    /* --- Días --- */
+    .days-row { display: flex; gap: 10px; margin-bottom: 1.8rem; flex-wrap: wrap; justify-content: center; }
     .day-pill {
-      font-size: 13px; font-weight: 400; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #ccc; padding: 5px 13px;
+      font-size: 15px; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #ccc; padding: 6px 16px;
       border-radius: 30px; border: 1.5px solid #eee;
+      transition: color 0.3s, border-color 0.3s, background 0.3s;
     }
-    .day-pill.today { color: #cc0000; border-color: #cc0000; background: rgba(204,0,0,0.06); font-weight: 600; }
+    #app.dark .day-pill { color: #333; border-color: #1e2028; }
+    .day-pill.today { color: #cc0000; border-color: #cc0000; background: rgba(204,0,0,0.08); font-weight: 600; }
+    #app.dark .day-pill.today { color: #cc0000; border-color: #cc0000; background: rgba(204,0,0,0.12); }
+
+    /* --- Hora --- */
     .time-display {
-      font-family: 'Bebas Neue', sans-serif; font-size: 200px;
-      color: #cc0000; letter-spacing: 0.02em; line-height: 0.9; margin-bottom: 0.1rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: 260px;
+      color: #cc0000; letter-spacing: 0.02em; line-height: 0.88;
+      margin-bottom: 0.2rem;
     }
+
+    /* --- Fecha --- */
     .date-display {
-      font-size: 14px; color: #bbb; letter-spacing: 0.18em;
-      text-transform: uppercase; margin-bottom: 2rem; font-weight: 300;
+      font-size: 17px; color: #bbb; letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 2.2rem; font-weight: 300;
+      transition: color 0.3s;
     }
-    .divider { width: 60px; height: 2px; background: #cc0000; opacity: 0.2; margin: 0 0 2rem; }
-    .weather-row { display: flex; align-items: center; gap: 2rem; }
-    .temp-main { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #cc0000; line-height: 1; text-align: center; }
-    .temp-range { font-size: 12px; color: #ccc; margin-top: 4px; letter-spacing: 0.08em; text-align: center; }
-    .weather-info { border-left: 1.5px solid #eee; padding-left: 2rem; }
-    .weather-desc { font-size: 18px; color: #555; font-weight: 300; margin-bottom: 6px; }
-    .weather-detail { font-size: 12px; color: #ccc; line-height: 2; }
+    #app.dark .date-display { color: #444; }
+
+    /* --- Divider --- */
+    .divider { width: 60px; height: 2px; background: #cc0000; opacity: 0.2; margin: 0 0 2.2rem; }
+
+    /* --- Clima --- */
+    .weather-row { display: flex; align-items: center; gap: 2.5rem; }
+    .temp-main {
+      font-family: 'Bebas Neue', sans-serif; font-size: 110px;
+      color: #cc0000; line-height: 1; text-align: center;
+    }
+    .temp-range { font-size: 15px; color: #ccc; margin-top: 6px; letter-spacing: 0.08em; text-align: center; transition: color 0.3s; }
+    #app.dark .temp-range { color: #333; }
+    .weather-info { border-left: 1.5px solid #eee; padding-left: 2.5rem; transition: border-color 0.3s; }
+    #app.dark .weather-info { border-color: #1e2028; }
+    .weather-desc { font-size: 22px; color: #555; font-weight: 300; margin-bottom: 8px; transition: color 0.3s; }
+    #app.dark .weather-desc { color: #888; }
+    .weather-detail { font-size: 14px; color: #ccc; line-height: 2; transition: color 0.3s; }
+    #app.dark .weather-detail { color: #2a2d35; }
     .weather-detail span { color: #aaa; }
-    .footer { margin-top: 2rem; font-size: 10px; color: #ddd; letter-spacing: 0.08em; display: flex; align-items: center; gap: 5px; }
+    #app.dark .weather-detail span { color: #555; }
+
+    /* --- Footer --- */
+    .footer { margin-top: 2.2rem; font-size: 11px; color: #ddd; letter-spacing: 0.08em; display: flex; align-items: center; gap: 5px; transition: color 0.3s; }
+    #app.dark .footer { color: #1e2028; }
     .dot { width: 5px; height: 5px; border-radius: 50%; background: #cc0000; opacity: 0.4; animation: blink 2s ease-in-out infinite; }
     @keyframes blink { 0%,100%{opacity:0.4;} 50%{opacity:0.1;} }
-    .msg { color: #bbb; font-size: 14px; }
-    @media (max-width: 700px) { .time-display{font-size:130px;} .temp-main{font-size:56px;} }
-    @media (max-width: 480px) { .time-display{font-size:96px;} .temp-main{font-size:48px;} .weather-row{gap:1.2rem;} .weather-info{padding-left:1.2rem;} }
-    @media (max-width: 360px) { .time-display{font-size:78px;} .day-pill{font-size:11px;padding:4px 9px;} }
+    .msg { font-size: 16px; color: #bbb; }
+
+    /* Responsive */
+    @media (max-width: 800px) { .time-display{font-size:180px;} .temp-main{font-size:86px;} }
+    @media (max-width: 600px) { .time-display{font-size:130px;} .temp-main{font-size:68px;} }
+    @media (max-width: 420px) { .time-display{font-size:96px;} .temp-main{font-size:52px;} .day-pill{font-size:12px;padding:5px 11px;} }
   </style>
 </head>
 <body>
 <div id="app">
+
+  <!-- Botón modo noche -->
+  <button id="toggle" onclick="toggleDark()" title="Modo noche">
+    <!-- Luna (modo día) -->
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+    <!-- Sol (modo noche) -->
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1"  x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22"  x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1"  y1="12" x2="3"  y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
   <div class="days-row" id="days-row"></div>
   <div class="time-display" id="time">--:--</div>
   <div class="date-display" id="date">cargando...</div>
   <div class="divider"></div>
   <div class="weather-row" id="weather-row"><div class="msg">obteniendo clima...</div></div>
-  <div class="footer"><span class="dot"></span>Villa Ballester · actualizado por GitHub Actions</div>
+  <div class="footer"><span class="dot"></span>Villa Ballester · GitHub Actions</div>
 </div>
 
 <script>
 var DAYS   = ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
 var MONTHS = ['enero','febrero','marzo','abril','mayo','junio',
               'julio','agosto','septiembre','octubre','noviembre','diciembre'];
-
 var DESC = {
   'Sunny':'Soleado','Clear':'Despejado','Clear ':'Despejado',
   'Partly cloudy':'Parcialmente nublado','Partly Cloudy':'Parcialmente nublado','Partly Cloudy ':'Parcialmente nublado',
@@ -84,6 +156,18 @@ var DESC = {
 function tr(s){ return DESC[s] || (s ? s.trim() : 'Variable'); }
 function pad(n){ return n < 10 ? '0'+n : ''+n; }
 
+/* --- Modo noche --- */
+var app = document.getElementById('app');
+try {
+  if(localStorage.getItem('dark') === '1') app.classList.add('dark');
+} catch(e){}
+
+function toggleDark(){
+  app.classList.toggle('dark');
+  try { localStorage.setItem('dark', app.classList.contains('dark') ? '1' : '0'); } catch(e){}
+}
+
+/* --- Días --- */
 function renderDays(){
   var today = new Date().getDay();
   var row = document.getElementById('days-row');
@@ -96,6 +180,7 @@ function renderDays(){
   }
 }
 
+/* --- Reloj --- */
 function updateClock(){
   var n = new Date();
   document.getElementById('time').textContent = pad(n.getHours()) + ':' + pad(n.getMinutes());
@@ -103,6 +188,7 @@ function updateClock(){
     DAYS[n.getDay()] + ', ' + n.getDate() + ' de ' + MONTHS[n.getMonth()] + ' ' + n.getFullYear();
 }
 
+/* --- Clima --- */
 function showWeather(temp, tmax, tmin, desc, wind){
   document.getElementById('weather-row').innerHTML =
     '<div style="text-align:center">' +
@@ -120,13 +206,9 @@ function showError(m){
 }
 
 function getWeather(){
-  /* Lee clima.json desde el mismo dominio github.io — sin certificado externo */
   var x = new XMLHttpRequest();
-  /* Cache-busting para que KitKat no sirva el archivo viejo */
-  var url = 'clima.json?t=' + new Date().getTime();
-  x.open('GET', url, true);
+  x.open('GET', 'clima.json?t=' + new Date().getTime(), true);
   x.timeout = 10000;
-
   x.onreadystatechange = function(){
     if(x.readyState !== 4) return;
     if(x.status === 200){
@@ -141,14 +223,11 @@ function getWeather(){
           tr(cc.weatherDesc[0].value),
           Math.round(cc.windspeedKmph)
         );
-      } catch(e){
-        showError('error al leer clima');
-      }
+      } catch(e){ showError('error al leer clima'); }
     } else {
-      showError('clima.json no encontrado (' + x.status + ')');
+      showError('clima.json no encontrado');
     }
   };
-
   x.ontimeout = function(){ showError('timeout'); };
   x.onerror   = function(){ showError('sin conexion'); };
   try{ x.send(); } catch(e){ showError('error: ' + e.message); }
@@ -157,7 +236,6 @@ function getWeather(){
 renderDays();
 updateClock();
 getWeather();
-
 setInterval(updateClock, 1000);
 setInterval(renderDays,  60000);
 setInterval(getWeather,  600000);
