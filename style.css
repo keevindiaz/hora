@@ -80,7 +80,7 @@ html, body {
 .weather-temp {
   display: flex;
   flex-direction: column;
-  font-size: clamp(28px, 5vw, 50px);
+  font-size: clamp(40px, 7vw, 80px);
   font-weight: 600;
   gap: 6px;
   text-align: center;
