@@ -4,316 +4,110 @@
   <meta charset="UTF-8">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#0d0f14">
+  <meta name="theme-color" content="#ffffff">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Reloj</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      height: 100%;
-      background: #0d0f14;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
+    html, body { height: 100%; width: 100%; background: #fff; overflow: hidden; }
     #app {
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-      font-family: 'Outfit', sans-serif;
-      position: relative;
-      overflow: hidden;
+      width: 100%; height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 1.5rem 1rem; font-family: 'Outfit', sans-serif;
     }
-
-    #app::before {
-      content: '';
-      position: absolute;
-      top: -100px; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 400px;
-      background: radial-gradient(ellipse, rgba(99,153,34,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    /* --- Días de la semana --- */
-    .days-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 2.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
+    .days-row { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
     .day-pill {
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #3a3f4a;
-      padding: 6px 14px;
-      border-radius: 30px;
-      border: 1px solid #1e2028;
-      background: transparent;
+      font-size: 13px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #ccc; padding: 5px 13px; border-radius: 30px; border: 1.5px solid #eee;
     }
-
-    .day-pill.today {
-      color: #639922;
-      border-color: #639922;
-      background: rgba(99,153,34,0.10);
-      font-weight: 600;
-    }
-
-    /* --- Reloj --- */
+    .day-pill.today { color: #cc0000; border-color: #cc0000; background: rgba(204,0,0,0.06); font-weight: 600; }
     .time-display {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 96px;
-      color: #e8ead0;
-      letter-spacing: 0.04em;
-      line-height: 1;
-      margin-bottom: 0.4rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: 200px;
+      color: #cc0000; letter-spacing: 0.02em; line-height: 0.9; margin-bottom: 0.1rem;
     }
-
     .date-display {
-      font-size: 14px;
-      color: #4a4f5a;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
+      font-size: 14px; color: #bbb; letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 2rem; font-weight: 300;
     }
-
-    /* --- Separador --- */
-    .divider {
-      width: 1px;
-      height: 50px;
-      background: #1e2028;
-      margin: 0 0 2rem;
-    }
-
-    /* --- Clima --- */
-    .weather-row {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-    }
-
-    .temp-block { text-align: center; }
-
-    .temp-main {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 52px;
-      color: #e8ead0;
-      line-height: 1;
-    }
-
-    .temp-range {
-      font-size: 12px;
-      color: #3a3f4a;
-      margin-top: 6px;
-      letter-spacing: 0.06em;
-    }
-
-    .weather-info {
-      border-left: 1px solid #1e2028;
-      padding-left: 2.5rem;
-    }
-
-    .weather-desc {
-      font-size: 16px;
-      color: #777;
-      font-weight: 300;
-      margin-bottom: 8px;
-    }
-
-    .weather-detail {
-      font-size: 12px;
-      color: #2e323b;
-      line-height: 2;
-      letter-spacing: 0.04em;
-    }
-
-    .weather-detail span { color: #4a4f5a; }
-
-    /* --- Footer --- */
-    .footer {
-      margin-top: 2.5rem;
-      font-size: 11px;
-      color: #22252e;
-      letter-spacing: 0.06em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .status-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: #639922;
-      animation: pulse 2.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.2; }
-    }
-
-    .loading-msg {
-      color: #2e323b;
-      font-size: 13px;
-    }
-
-    /* --- Responsive para tablets / pantallas pequeñas --- */
-    @media (max-width: 600px) {
-      .time-display { font-size: 68px; }
-      .temp-main    { font-size: 40px; }
-      .weather-row  { gap: 1.5rem; }
-      .weather-info { padding-left: 1.5rem; }
-    }
-
-    @media (max-width: 400px) {
-      .time-display { font-size: 52px; }
-      .day-pill     { font-size: 11px; padding: 5px 10px; }
-    }
+    .divider { width: 60px; height: 2px; background: #cc0000; opacity: 0.2; margin: 0 0 2rem; }
+    .weather-row { display: flex; align-items: center; gap: 2rem; }
+    .temp-main { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #cc0000; line-height: 1; }
+    .temp-range { font-size: 12px; color: #ccc; margin-top: 4px; letter-spacing: 0.08em; text-align: center; }
+    .weather-info { border-left: 1.5px solid #eee; padding-left: 2rem; }
+    .weather-desc { font-size: 18px; color: #555; font-weight: 300; margin-bottom: 6px; }
+    .weather-detail { font-size: 12px; color: #ccc; line-height: 2; letter-spacing: 0.05em; }
+    .weather-detail span { color: #aaa; }
+    .footer { margin-top: 2rem; font-size: 10px; color: #ddd; letter-spacing: 0.08em; display: flex; align-items: center; gap: 5px; }
+    .dot { width: 5px; height: 5px; border-radius: 50%; background: #cc0000; opacity: 0.4; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:0.4;} 50%{opacity:0.1;} }
+    .msg { color: #ccc; font-size: 14px; }
+    @media (max-width: 700px) { .time-display{font-size:130px;} .temp-main{font-size:56px;} }
+    @media (max-width: 480px) { .time-display{font-size:96px;} .temp-main{font-size:48px;} .weather-row{gap:1.2rem;} .weather-info{padding-left:1.2rem;} }
+    @media (max-width: 360px) { .time-display{font-size:78px;} .day-pill{font-size:11px;padding:4px 9px;} }
   </style>
 </head>
 <body>
 <div id="app">
   <div class="days-row" id="days-row"></div>
-  <div class="time-display" id="time">--:--:--</div>
+  <div class="time-display" id="time">--:--</div>
   <div class="date-display" id="date">cargando...</div>
   <div class="divider"></div>
-  <div class="weather-row" id="weather-row">
-    <div class="loading-msg">obteniendo clima...</div>
-  </div>
-  <div class="footer">
-    <span class="status-dot"></span>open-meteo · sin api key
-  </div>
+  <div class="weather-row" id="weather-row"><div class="msg">obteniendo clima...</div></div>
+  <div class="footer"><span class="dot"></span>open-meteo</div>
 </div>
-
 <script>
-var DAYS_ES   = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
-var MONTHS_ES = ['enero','febrero','marzo','abril','mayo','junio',
-                 'julio','agosto','septiembre','octubre','noviembre','diciembre'];
-
-var WMO_CODES = {
-  0:'Despejado', 1:'Mayormente despejado', 2:'Parcialmente nublado', 3:'Nublado',
-  45:'Niebla', 48:'Niebla con escarcha',
-  51:'Llovizna leve', 53:'Llovizna moderada', 55:'Llovizna intensa',
-  56:'Llovizna helada leve', 57:'Llovizna helada intensa',
-  61:'Lluvia leve', 63:'Lluvia moderada', 65:'Lluvia intensa',
-  71:'Nieve leve', 73:'Nieve moderada', 75:'Nieve intensa',
-  77:'Nieve granulada',
-  80:'Chubascos leves', 81:'Chubascos moderados', 82:'Chubascos fuertes',
-  85:'Chubascos de nieve leves', 86:'Chubascos de nieve fuertes',
-  95:'Tormenta', 96:'Tormenta con granizo leve', 99:'Tormenta con granizo'
-};
-
-function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-/* --- Días de la semana --- */
-function renderDays() {
-  var today = new Date().getDay();
-  var row = document.getElementById('days-row');
-  row.innerHTML = '';
-  for (var i = 0; i < 7; i++) {
-    var pill = document.createElement('div');
-    pill.className = 'day-pill' + (i === today ? ' today' : '');
-    pill.textContent = DAYS_ES[i];
-    row.appendChild(pill);
-  }
+var DAYS=['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
+var MONTHS=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+var WMO={0:'Despejado',1:'Mayormente despejado',2:'Parcialmente nublado',3:'Nublado',45:'Niebla',48:'Niebla',51:'Llovizna leve',53:'Llovizna',55:'Llovizna fuerte',61:'Lluvia leve',63:'Lluvia',65:'Lluvia fuerte',71:'Nieve leve',73:'Nieve',75:'Nieve fuerte',80:'Chubascos',81:'Chubascos',82:'Chubascos fuertes',95:'Tormenta',96:'Tormenta',99:'Tormenta'};
+function pad(n){return n<10?'0'+n:''+n;}
+function renderDays(){
+  var today=new Date().getDay(),row=document.getElementById('days-row');
+  row.innerHTML='';
+  for(var i=0;i<7;i++){var p=document.createElement('div');p.className='day-pill'+(i===today?' today':'');p.textContent=DAYS[i];row.appendChild(p);}
 }
-
-/* --- Reloj --- */
-function updateClock() {
-  var now = new Date();
-  document.getElementById('time').textContent =
-    pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
-  document.getElementById('date').textContent =
-    DAYS_ES[now.getDay()] + ', ' +
-    now.getDate() + ' de ' +
-    MONTHS_ES[now.getMonth()] + ' ' +
-    now.getFullYear();
+function updateClock(){
+  var n=new Date();
+  document.getElementById('time').textContent=pad(n.getHours())+':'+pad(n.getMinutes());
+  document.getElementById('date').textContent=DAYS[n.getDay()]+', '+n.getDate()+' de '+MONTHS[n.getMonth()]+' '+n.getFullYear();
 }
-
-/* --- Clima vía Open-Meteo (HTTP, sin API key) --- */
-function fetchWeather(lat, lon) {
-  var url =
-    'https://api.open-meteo.com/v1/forecast' +
-    '?latitude='   + lat +
-    '&longitude='  + lon +
-    '&current_weather=true' +
-    '&daily=temperature_2m_max,temperature_2m_min,weathercode' +
-    '&timezone=auto' +
-    '&forecast_days=1';
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', url, true);
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState !== 4) return;
-    if (xhr.status === 200) {
-      try {
-        var d    = JSON.parse(xhr.responseText);
-        var cw   = d.current_weather;
-        var daily= d.daily;
-        var desc = WMO_CODES[cw.weathercode] || 'Variable';
-        var tmax = Math.round(daily.temperature_2m_max[0]);
-        var tmin = Math.round(daily.temperature_2m_min[0]);
-        var temp = Math.round(cw.temperature);
-        var wind = Math.round(cw.windspeed);
-
-        document.getElementById('weather-row').innerHTML =
-          '<div class="temp-block">' +
-            '<div class="temp-main">' + temp + '°C</div>' +
-            '<div class="temp-range">&#8593;' + tmax + '°&nbsp;&nbsp;&#8595;' + tmin + '°</div>' +
-          '</div>' +
-          '<div class="weather-info">' +
-            '<div class="weather-desc">' + desc + '</div>' +
-            '<div class="weather-detail">' +
-              'Viento <span>' + wind + ' km/h</span><br>' +
-              'Lat <span>' + lat.toFixed(2) + '°</span>&nbsp;&nbsp;' +
-              'Lon <span>' + lon.toFixed(2) + '°</span>' +
-            '</div>' +
-          '</div>';
-      } catch (e) {
-        document.getElementById('weather-row').innerHTML =
-          '<div class="loading-msg">error al leer clima</div>';
-      }
-    } else {
-      document.getElementById('weather-row').innerHTML =
-        '<div class="loading-msg">sin conexi&#243;n al clima</div>';
-    }
-  };
-  xhr.send();
+function doXHR(url,ok,fail){
+  var x=new XMLHttpRequest();x.open('GET',url,true);x.timeout=8000;
+  x.onreadystatechange=function(){if(x.readyState!==4)return;if(x.status===200){ok(x.responseText);}else{fail();}};
+  x.ontimeout=fail;x.onerror=fail;try{x.send();}catch(e){fail();}
 }
-
-function getWeather() {
-  if (navigator.geolocation) {
+function showWeather(temp,tmax,tmin,desc,wind){
+  document.getElementById('weather-row').innerHTML=
+    '<div style="text-align:center"><div class="temp-main">'+temp+'&#176;C</div><div class="temp-range">&#8593;'+tmax+'&#176;&nbsp; &#8595;'+tmin+'&#176;</div></div>'+
+    '<div class="weather-info"><div class="weather-desc">'+desc+'</div><div class="weather-detail">Viento <span>'+wind+' km/h</span></div></div>';
+}
+function showError(m){document.getElementById('weather-row').innerHTML='<div class="msg">'+m+'</div>';}
+function parseOM(txt){
+  var d=JSON.parse(txt),cw=d.current_weather,dy=d.daily;
+  showWeather(Math.round(cw.temperature),Math.round(dy.temperature_2m_max[0]),Math.round(dy.temperature_2m_min[0]),WMO[cw.weathercode]||'Variable',Math.round(cw.windspeed));
+}
+function fetchOM(lat,lon){
+  var base='api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto&forecast_days=1';
+  doXHR('http://'+base,
+    function(t){try{parseOM(t);}catch(e){showError('error clima');}},
+    function(){doXHR('https://'+base,
+      function(t){try{parseOM(t);}catch(e){showError('error clima');}},
+      function(){showError('sin conexion al clima');}
+    );}
+  );
+}
+function getWeather(){
+  if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(
-      function (pos) { fetchWeather(pos.coords.latitude, pos.coords.longitude); },
-      function ()    { fetchWeather(-34.6037, -58.3816); } /* fallback: Buenos Aires */
+      function(p){fetchOM(p.coords.latitude,p.coords.longitude);},
+      function(){fetchOM(-34.6037,-58.3816);},
+      {timeout:10000}
     );
-  } else {
-    fetchWeather(-34.6037, -58.3816);
-  }
+  }else{fetchOM(-34.6037,-58.3816);}
 }
-
-/* --- Init --- */
-renderDays();
-updateClock();
-getWeather();
-
-setInterval(updateClock, 1000);
-setInterval(renderDays, 60000);     /* re-verifica el día cada minuto */
-setInterval(getWeather, 600000);    /* actualiza el clima cada 10 min */
+renderDays();updateClock();getWeather();
+setInterval(updateClock,1000);setInterval(renderDays,60000);setInterval(getWeather,600000);
 </script>
 </body>
 </html>
