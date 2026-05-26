@@ -1,35 +1,35 @@
 {
   "current_condition": [
     {
-      "FeelsLikeC": "12",
-      "FeelsLikeF": "53",
-      "cloudcover": "0",
-      "humidity": "88",
-      "observation_time": "09:03 PM",
+      "FeelsLikeC": "10",
+      "FeelsLikeF": "49",
+      "cloudcover": "50",
+      "humidity": "94",
+      "observation_time": "10:38 PM",
       "precipInches": "0.0",
       "precipMM": "0.0",
       "pressure": "1023",
       "pressureInches": "30",
-      "temp_C": "12",
-      "temp_F": "54",
+      "temp_C": "10",
+      "temp_F": "51",
       "uvIndex": "0",
-      "visibility": "5",
-      "visibilityMiles": "3",
-      "weatherCode": "143",
+      "visibility": "8",
+      "visibilityMiles": "4",
+      "weatherCode": "116",
       "weatherDesc": [
         {
-          "value": "Mist"
+          "value": "Partly cloudy"
         }
       ],
       "weatherIconUrl": [
         {
-          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0006_mist.png"
+          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
         }
       ],
-      "winddir16Point": "E",
-      "winddirDegree": "86",
-      "windspeedKmph": "8",
-      "windspeedMiles": "5"
+      "winddir16Point": "ENE",
+      "winddirDegree": "78",
+      "windspeedKmph": "7",
+      "windspeedMiles": "4"
     }
   ],
   "nearest_area": [
@@ -410,27 +410,27 @@
           "chanceofwindy": "0",
           "cloudcover": "0",
           "diffRad": "38.4",
-          "humidity": "88",
+          "humidity": "64",
           "precipInches": "0.0",
           "precipMM": "0.0",
-          "pressure": "1023",
+          "pressure": "1022",
           "pressureInches": "30",
           "shortRad": "195.1",
-          "tempC": "12",
-          "tempF": "54",
+          "tempC": "14",
+          "tempF": "58",
           "time": "1800",
           "uvIndex": "0",
-          "visibility": "5",
-          "visibilityMiles": "3",
-          "weatherCode": "143",
+          "visibility": "10",
+          "visibilityMiles": "6",
+          "weatherCode": "113",
           "weatherDesc": [
             {
-              "value": "Mist"
+              "value": "Clear "
             }
           ],
           "weatherIconUrl": [
             {
-              "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0006_mist.png"
+              "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0008_clear_sky_night.png"
             }
           ],
           "winddir16Point": "E",
