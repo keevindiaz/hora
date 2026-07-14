@@ -1,18 +1,18 @@
 {
   "current_condition": [
     {
-      "FeelsLikeC": "5",
-      "FeelsLikeF": "41",
+      "FeelsLikeC": "6",
+      "FeelsLikeF": "43",
       "cloudcover": "100",
       "humidity": "93",
-      "observation_time": "11:52 AM",
+      "observation_time": "01:27 PM",
       "precipInches": "0.0",
       "precipMM": "0.0",
       "pressure": "1019",
       "pressureInches": "30",
-      "temp_C": "7",
-      "temp_F": "45",
-      "uvIndex": "0",
+      "temp_C": "8",
+      "temp_F": "47",
+      "uvIndex": "1",
       "visibility": "10",
       "visibilityMiles": "6",
       "weatherCode": "122",
@@ -27,9 +27,9 @@
         }
       ],
       "winddir16Point": "NNE",
-      "winddirDegree": "12",
-      "windspeedKmph": "12",
-      "windspeedMiles": "7"
+      "winddirDegree": "17",
+      "windspeedKmph": "13",
+      "windspeedMiles": "8"
     }
   ],
   "nearest_area": [
