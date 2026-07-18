@@ -5,7 +5,7 @@
       "FeelsLikeF": "61",
       "cloudcover": "100",
       "humidity": "88",
-      "observation_time": "04:32 PM",
+      "observation_time": "06:34 PM",
       "precipInches": "0.0",
       "precipMM": "0.0",
       "pressure": "1000",
@@ -13,23 +13,23 @@
       "temp_C": "16",
       "temp_F": "61",
       "uvIndex": "1",
-      "visibility": "9",
-      "visibilityMiles": "5",
-      "weatherCode": "122",
+      "visibility": "4",
+      "visibilityMiles": "2",
+      "weatherCode": "143",
       "weatherDesc": [
         {
-          "value": "Overcast"
+          "value": "Mist"
         }
       ],
       "weatherIconUrl": [
         {
-          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0006_mist.png"
         }
       ],
-      "winddir16Point": "ESE",
-      "winddirDegree": "104",
-      "windspeedKmph": "13",
-      "windspeedMiles": "8"
+      "winddir16Point": "SE",
+      "winddirDegree": "136",
+      "windspeedKmph": "12",
+      "windspeedMiles": "7"
     }
   ],
   "nearest_area": [
@@ -359,27 +359,27 @@
           "chanceofwindy": "1",
           "cloudcover": "100",
           "diffRad": "50.3",
-          "humidity": "93",
+          "humidity": "88",
           "precipInches": "0.0",
           "precipMM": "0.0",
-          "pressure": "1001",
+          "pressure": "1000",
           "pressureInches": "30",
           "shortRad": "84.8",
-          "tempC": "15",
-          "tempF": "59",
+          "tempC": "16",
+          "tempF": "61",
           "time": "1500",
           "uvIndex": "1",
-          "visibility": "10",
-          "visibilityMiles": "6",
-          "weatherCode": "176",
+          "visibility": "4",
+          "visibilityMiles": "2",
+          "weatherCode": "143",
           "weatherDesc": [
             {
-              "value": "Patchy rain nearby"
+              "value": "Mist"
             }
           ],
           "weatherIconUrl": [
             {
-              "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0009_light_rain_showers.png"
+              "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0006_mist.png"
             }
           ],
           "winddir16Point": "SE",
