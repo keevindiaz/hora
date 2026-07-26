@@ -5,10 +5,10 @@
       "FeelsLikeF": "57",
       "cloudcover": "0",
       "humidity": "82",
-      "observation_time": "10:36 PM",
+      "observation_time": "01:14 AM",
       "precipInches": "0.0",
       "precipMM": "0.0",
-      "pressure": "1014",
+      "pressure": "1015",
       "pressureInches": "30",
       "temp_C": "14",
       "temp_F": "57",
@@ -26,10 +26,10 @@
           "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0008_clear_sky_night.png"
         }
       ],
-      "winddir16Point": "NNE",
-      "winddirDegree": "25",
-      "windspeedKmph": "8",
-      "windspeedMiles": "5"
+      "winddir16Point": "NNW",
+      "winddirDegree": "345",
+      "windspeedKmph": "6",
+      "windspeedMiles": "4"
     }
   ],
   "nearest_area": [
