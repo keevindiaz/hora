@@ -2,41 +2,41 @@
   "current_condition": [
     {
       "FeelsLikeC": "8",
-      "FeelsLikeF": "46",
+      "FeelsLikeF": "47",
       "cloudcover": "100",
       "humidity": "93",
-      "observation_time": "01:35 PM",
+      "observation_time": "03:26 PM",
       "precipInches": "0.0",
-      "precipMM": "0.2",
+      "precipMM": "0.1",
       "pressure": "1024",
       "pressureInches": "30",
       "temp_C": "11",
       "temp_F": "51",
       "uvIndex": "0",
-      "visibility": "2",
-      "visibilityMiles": "1",
-      "weatherCode": "266",
+      "visibility": "10",
+      "visibilityMiles": "6",
+      "weatherCode": "176",
       "weatherDesc": [
         {
-          "value": "Light drizzle"
+          "value": "Patchy rain nearby"
         }
       ],
       "weatherIconUrl": [
         {
-          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0017_cloudy_with_light_rain.png"
+          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0009_light_rain_showers.png"
         }
       ],
       "winddir16Point": "E",
-      "winddirDegree": "84",
-      "windspeedKmph": "19",
-      "windspeedMiles": "12"
+      "winddirDegree": "81",
+      "windspeedKmph": "17",
+      "windspeedMiles": "11"
     }
   ],
   "nearest_area": [
     {
       "areaName": [
         {
-          "value": "Ballester"
+          "value": "J. Leon Suarez"
         }
       ],
       "country": [
@@ -45,7 +45,7 @@
         }
       ],
       "latitude": "-34.533",
-      "longitude": "-58.550",
+      "longitude": "-58.583",
       "population": "0",
       "region": [
         {
@@ -54,7 +54,7 @@
       ],
       "weatherUrl": [
         {
-          "value": "https://www.worldweatheronline.com/v2/weather.aspx?q=-34.533,-58.55"
+          "value": "https://www.worldweatheronline.com/v2/weather.aspx?q=-34.533,-58.583"
         }
       ]
     }
