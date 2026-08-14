@@ -4,8 +4,8 @@
       "FeelsLikeC": "10",
       "FeelsLikeF": "50",
       "cloudcover": "100",
-      "humidity": "91",
-      "observation_time": "07:27 PM",
+      "humidity": "93",
+      "observation_time": "09:06 PM",
       "precipInches": "0.0",
       "precipMM": "0.0",
       "pressure": "1021",
@@ -26,8 +26,8 @@
           "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0009_light_rain_showers.png"
         }
       ],
-      "winddir16Point": "ENE",
-      "winddirDegree": "77",
+      "winddir16Point": "E",
+      "winddirDegree": "82",
       "windspeedKmph": "13",
       "windspeedMiles": "8"
     }
