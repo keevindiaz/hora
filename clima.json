@@ -1,11 +1,11 @@
 {
   "current_condition": [
     {
-      "FeelsLikeC": "12",
-      "FeelsLikeF": "54",
+      "FeelsLikeC": "13",
+      "FeelsLikeF": "55",
       "cloudcover": "100",
-      "humidity": "96",
-      "observation_time": "08:42 PM",
+      "humidity": "98",
+      "observation_time": "10:17 PM",
       "precipInches": "0.0",
       "precipMM": "0.0",
       "pressure": "1013",
@@ -13,23 +13,23 @@
       "temp_C": "13",
       "temp_F": "56",
       "uvIndex": "0",
-      "visibility": "2",
-      "visibilityMiles": "1",
-      "weatherCode": "143",
+      "visibility": "0",
+      "visibilityMiles": "0",
+      "weatherCode": "248",
       "weatherDesc": [
         {
-          "value": "Mist"
+          "value": "Fog"
         }
       ],
       "weatherIconUrl": [
         {
-          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0006_mist.png"
+          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0007_fog.png"
         }
       ],
       "winddir16Point": "E",
-      "winddirDegree": "93",
-      "windspeedKmph": "10",
-      "windspeedMiles": "6"
+      "winddirDegree": "87",
+      "windspeedKmph": "8",
+      "windspeedMiles": "5"
     }
   ],
   "nearest_area": [
