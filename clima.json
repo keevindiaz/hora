@@ -5,7 +5,7 @@
       "FeelsLikeF": "55",
       "cloudcover": "100",
       "humidity": "98",
-      "observation_time": "09:44 AM",
+      "observation_time": "11:16 AM",
       "precipInches": "0.0",
       "precipMM": "0.0",
       "pressure": "1012",
@@ -26,9 +26,9 @@
           "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0007_fog.png"
         }
       ],
-      "winddir16Point": "SSW",
-      "winddirDegree": "205",
-      "windspeedKmph": "5",
+      "winddir16Point": "S",
+      "winddirDegree": "189",
+      "windspeedKmph": "4",
       "windspeedMiles": "3"
     }
   ],
