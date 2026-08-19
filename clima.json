@@ -4,8 +4,8 @@
       "FeelsLikeC": "8",
       "FeelsLikeF": "46",
       "cloudcover": "100",
-      "humidity": "78",
-      "observation_time": "03:31 AM",
+      "humidity": "77",
+      "observation_time": "05:28 AM",
       "precipInches": "0.0",
       "precipMM": "0.0",
       "pressure": "1023",
@@ -26,10 +26,10 @@
           "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
         }
       ],
-      "winddir16Point": "ESE",
-      "winddirDegree": "123",
-      "windspeedKmph": "11",
-      "windspeedMiles": "7"
+      "winddir16Point": "SE",
+      "winddirDegree": "132",
+      "windspeedKmph": "9",
+      "windspeedMiles": "5"
     }
   ],
   "nearest_area": [
