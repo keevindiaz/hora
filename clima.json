@@ -3,9 +3,9 @@
     {
       "FeelsLikeC": "5",
       "FeelsLikeF": "41",
-      "cloudcover": "5",
-      "humidity": "72",
-      "observation_time": "10:20 AM",
+      "cloudcover": "0",
+      "humidity": "71",
+      "observation_time": "12:00 PM",
       "precipInches": "0.0",
       "precipMM": "0.0",
       "pressure": "1028",
@@ -18,16 +18,16 @@
       "weatherCode": "113",
       "weatherDesc": [
         {
-          "value": "Clear "
+          "value": "Sunny"
         }
       ],
       "weatherIconUrl": [
         {
-          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0008_clear_sky_night.png"
+          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"
         }
       ],
-      "winddir16Point": "NE",
-      "winddirDegree": "46",
+      "winddir16Point": "ENE",
+      "winddirDegree": "58",
       "windspeedKmph": "12",
       "windspeedMiles": "8"
     }
