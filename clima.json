@@ -2,10 +2,10 @@
   "current_condition": [
     {
       "FeelsLikeC": "11",
-      "FeelsLikeF": "53",
-      "cloudcover": "86",
-      "humidity": "67",
-      "observation_time": "10:06 PM",
+      "FeelsLikeF": "52",
+      "cloudcover": "100",
+      "humidity": "78",
+      "observation_time": "12:32 AM",
       "precipInches": "0.0",
       "precipMM": "0.0",
       "pressure": "1016",
@@ -15,10 +15,10 @@
       "uvIndex": "0",
       "visibility": "10",
       "visibilityMiles": "6",
-      "weatherCode": "119",
+      "weatherCode": "122",
       "weatherDesc": [
         {
-          "value": "Cloudy "
+          "value": "Overcast "
         }
       ],
       "weatherIconUrl": [
@@ -26,10 +26,10 @@
           "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
         }
       ],
-      "winddir16Point": "ESE",
-      "winddirDegree": "104",
-      "windspeedKmph": "12",
-      "windspeedMiles": "7"
+      "winddir16Point": "E",
+      "winddirDegree": "80",
+      "windspeedKmph": "14",
+      "windspeedMiles": "9"
     }
   ],
   "nearest_area": [
