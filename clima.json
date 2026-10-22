@@ -1,42 +1,42 @@
 {
   "current_condition": [
     {
-      "FeelsLikeC": "18",
-      "FeelsLikeF": "64",
-      "cloudcover": "99",
-      "humidity": "76",
-      "observation_time": "03:40 PM",
+      "FeelsLikeC": "15",
+      "FeelsLikeF": "59",
+      "cloudcover": "100",
+      "humidity": "95",
+      "observation_time": "07:32 PM",
       "precipInches": "0.0",
-      "precipMM": "0.5",
-      "pressure": "1015",
+      "precipMM": "0.7",
+      "pressure": "1011",
       "pressureInches": "30",
-      "temp_C": "19",
-      "temp_F": "67",
-      "uvIndex": "9",
-      "visibility": "10",
-      "visibilityMiles": "6",
-      "weatherCode": "353",
+      "temp_C": "17",
+      "temp_F": "63",
+      "uvIndex": "1",
+      "visibility": "2",
+      "visibilityMiles": "1",
+      "weatherCode": "266",
       "weatherDesc": [
         {
-          "value": "Light rain shower"
+          "value": "Light drizzle"
         }
       ],
       "weatherIconUrl": [
         {
-          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0009_light_rain_showers.png"
+          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0017_cloudy_with_light_rain.png"
         }
       ],
       "winddir16Point": "E",
-      "winddirDegree": "89",
-      "windspeedKmph": "17",
-      "windspeedMiles": "11"
+      "winddirDegree": "80",
+      "windspeedKmph": "22",
+      "windspeedMiles": "14"
     }
   ],
   "nearest_area": [
     {
       "areaName": [
         {
-          "value": "J. Leon Suarez"
+          "value": "Ballester"
         }
       ],
       "country": [
@@ -45,7 +45,7 @@
         }
       ],
       "latitude": "-34.533",
-      "longitude": "-58.583",
+      "longitude": "-58.550",
       "population": "0",
       "region": [
         {
@@ -54,7 +54,7 @@
       ],
       "weatherUrl": [
         {
-          "value": "https://www.worldweatheronline.com/v2/weather.aspx?q=-34.533,-58.583"
+          "value": "https://www.worldweatheronline.com/v2/weather.aspx?q=-34.533,-58.55"
         }
       ]
     }
