@@ -1,42 +1,42 @@
 {
   "current_condition": [
     {
-      "FeelsLikeC": "17",
-      "FeelsLikeF": "63",
+      "FeelsLikeC": "20",
+      "FeelsLikeF": "67",
       "cloudcover": "100",
-      "humidity": "81",
-      "observation_time": "02:42 PM",
+      "humidity": "96",
+      "observation_time": "07:13 PM",
       "precipInches": "0.0",
-      "precipMM": "0.2",
-      "pressure": "1012",
+      "precipMM": "0.8",
+      "pressure": "1011",
       "pressureInches": "30",
       "temp_C": "18",
       "temp_F": "64",
-      "uvIndex": "6",
-      "visibility": "10",
-      "visibilityMiles": "6",
-      "weatherCode": "353",
+      "uvIndex": "0",
+      "visibility": "9",
+      "visibilityMiles": "5",
+      "weatherCode": "296",
       "weatherDesc": [
         {
-          "value": "Light rain shower"
+          "value": "Light rain"
         }
       ],
       "weatherIconUrl": [
         {
-          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0009_light_rain_showers.png"
+          "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0017_cloudy_with_light_rain.png"
         }
       ],
-      "winddir16Point": "NNW",
-      "winddirDegree": "336",
-      "windspeedKmph": "13",
-      "windspeedMiles": "8"
+      "winddir16Point": "SSE",
+      "winddirDegree": "154",
+      "windspeedKmph": "4",
+      "windspeedMiles": "2"
     }
   ],
   "nearest_area": [
     {
       "areaName": [
         {
-          "value": "J. Leon Suarez"
+          "value": "Ballester"
         }
       ],
       "country": [
@@ -45,7 +45,7 @@
         }
       ],
       "latitude": "-34.533",
-      "longitude": "-58.583",
+      "longitude": "-58.550",
       "population": "0",
       "region": [
         {
@@ -54,7 +54,7 @@
       ],
       "weatherUrl": [
         {
-          "value": "https://www.worldweatheronline.com/v2/weather.aspx?q=-34.533,-58.583"
+          "value": "https://www.worldweatheronline.com/v2/weather.aspx?q=-34.533,-58.55"
         }
       ]
     }
