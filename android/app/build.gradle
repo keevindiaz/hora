@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'ar.kevin.reloj'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'ar.kevin.reloj'
+        minSdk 19          // Android 4.4
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+    }
+
+    signingConfigs {
+        release {
+            // Llave fija para que las actualizaciones se instalen encima sin desinstalar.
+            storeFile file('reloj.keystore')
+            storePassword 'reloj1234'
+            keyAlias 'reloj'
+            keyPassword 'reloj1234'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
